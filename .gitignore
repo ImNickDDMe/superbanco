@@ -1,0 +1,15 @@
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+.dev.vars
+
+dist/
+build/
+logs/
+
+.js.map
+*.log
+
+
