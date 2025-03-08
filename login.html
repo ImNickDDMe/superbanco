@@ -34,7 +34,13 @@
         </span>
         <span class="h4 display-6">Login to your account</span>
         <div class="mx-auto" style="max-width: 400px">
-          <form action="#" method="post">
+          <div class="alert alert-success fade" id="successAlert">
+            Login successful! Redirecting...
+          </div>
+          <div class="alert alert-danger fade" id="failAlert">
+            Login failed! Please check your credentials.
+          </div>
+          <form>
             <div class="m-4 text-start">
               <label for="email" class="form-label">Email address</label>
               <input
@@ -55,7 +61,7 @@
               />
             </div>
             <div class="m-4">
-              <button type="submit" class="btn btn-success focus-ring w-100">
+              <button onclick="handleSubmit(event)" type="submit" class="btn btn-success focus-ring w-100">
                 <i class="bi bi-door-open"></i>
                 Login
               </button>
@@ -78,5 +84,42 @@
         </div>
       </section>
     </main>
+    <script>
+      let sampleCreds = {
+          email: 'johnpav@example.com',
+          password: 'I_aM_4w3s0m3'
+      }
+
+      const successAlert = document.getElementById('successAlert');
+      successAlert.style.display = 'none';
+
+      const failAlert = document.getElementById('failAlert');
+      failAlert.style.display = 'none';
+      
+      const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+  
+        if (sampleCreds.email == email && sampleCreds.password == password) {
+          successAlert.style.display = 'block';
+          successAlert.classList.add('show');
+          
+          setTimeout(() => {
+            successAlert.classList.remove('show');
+            successAlert.style.display = 'none';
+          }, 2000);
+        } else {
+          failAlert.style.display = 'block';
+          failAlert.classList.add('show');
+          
+          setTimeout(() => {
+            failAlert.classList.remove('show');
+            failAlert.style.display = 'none';
+          }, 2000);
+        }
+      }
+    </script>
   </body>
 </html>
