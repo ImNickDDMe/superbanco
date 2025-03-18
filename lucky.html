@@ -53,15 +53,27 @@
         }
 
         .dice {
-            width: 25%;
-            width: 25%;
-            animation-name: dice-rolling;
-            animation-duration: 0.1s;
+            animation-name: dice_rolling;
+            animation-duration: 2.5s;
+            animation-iteration-count: infinite;
+        }
+
+        .dice-size {
+            width: 50%;
+            height: 50%;
         }
     </style>
-    <div>
-        <img class="dice" src="img/dice-five.svg" alt="Dice">
-    </div>
+    <main class="bg-warning-subtle bg-gradient d-flex justify-content-center align-items-center vh-100" style="--bs-bg-opacity: 0.5">
+        <section class="d-flex flex-column justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center my-4">
+                <img class="dice dice-size px-4" src="img/dice-five.svg" alt="Dice">
+                <img class="dice dice-size px-4" src="img/dice-five.svg" alt="Dice">
+            </div>
+            <button class="btn btn-success focus-ring w-100 my-4">Stop</button>
+            <div class="d-flex justify-content-center align-items-center">
+            </div>
+        </section>
+    </main>
     <script>
         const diceNums = [
             'one',
@@ -78,6 +90,18 @@
             img.src = `img/dice-${diceNums[Math.floor(Math.random() * diceNums.length)]}.svg`;
         }, 300);
 
+        const button = document.querySelector('button');
+        button.addEventListener('click', () => {
+            clearInterval(interval);
+
+            const dice = document.querySelectorAll('.dice');
+
+            setTimeout(() => {
+                dice.forEach(die => {
+                    die.classList.remove('dice');
+                });
+            }, 500);
+        });
     </script>
 </body>
 </html>
